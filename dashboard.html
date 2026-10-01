@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gerenciamento de Pet Shop - Dashboard</title>
+</head>
+<body>
+
+    <h1 id="boasVindas">Dashboard - Bem-vindo!</h1>
+
+    <button id="btnLogout">Sair</button>
+
+    <script>
+        const usuarioSalvo = localStorage.getItem('usuarioLogado');
+
+        // Se não houver usuário salvo ou for um valor inválido, volta para o login
+        if (!usuarioSalvo || usuarioSalvo === 'undefined') {
+            window.location.href = 'index.html';
+        } else {
+            const usuarioDados = JSON.parse(usuarioSalvo);
+
+            document.getElementById('boasVindas').innerText =
+                `Dashboard - Bem-vindo, ${usuarioDados.email}!`;
+        }
+
+        // Função do botão Sair
+        document.getElementById('btnLogout').addEventListener('click', () => {
+            localStorage.removeItem('usuarioLogado');
+            window.location.href = 'index.html';
+        });
+    </script>
+
+</body>
+</html>
